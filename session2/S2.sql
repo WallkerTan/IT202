@@ -137,7 +137,7 @@ CREATE TABLE TuitionBill (
 );
 
 -- GIAO DỊCH THANH TOÁN
-CREATE TABLE Transaction (
+CREATE TABLE Transactions (
     transaction_id INT PRIMARY KEY,
     account_id INT NOT NULL,
     bill_id INT NOT NULL UNIQUE,
