@@ -2,7 +2,6 @@ CREATE DATABASE session03;
 USE session03;
 
 -- cau 1
-
 CREATE TABLE student (
 	student_id int primary key auto_increment,
     full_name varchar(50) not null,
@@ -63,8 +62,7 @@ where subject_id = 2;
 
 
 SELECT * FROM session03.subjects;
-
-
+ 
 -- cau 4
 
 CREATE TABLE enrollment (
@@ -87,7 +85,7 @@ INSERT INTO enrrollment(student_id,subject_id) values
 select * from session03.enrrollment;
 select enrollment_id from enrollment where student_id = 1;
 
--- cau 5
+-- cau5
 CREATE TABLE score (
     student_id INT,
     subject_id INT,
