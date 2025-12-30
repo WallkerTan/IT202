@@ -87,7 +87,7 @@ INSERT INTO enrrollment(student_id,subject_id) values
 select * from session03.enrrollment;
 select enrollment_id from enrollment where student_id = 1;
 
-
+-- cau 5
 CREATE TABLE score (
     student_id INT,
     subject_id INT,
