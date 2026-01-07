@@ -148,13 +148,33 @@ left join rooms r on r.room_id = b.room_id
 group by g.guest_name, r.room_type;
 
 -- tổng doanh thu từng loại phòng
-select
+SELECT
     r.room_type,
-    count(b.guest_id) as so_lan_dat_phong,
-    sum((b.check_out - b.check_in)*r.price_per_day) as doanh_thu
-from bookings b
-left join guests g on g.guest_id = b.guest_id
-left join rooms r on r.room_id = b.room_id
-group by r.room_type;
+    r.price_per_day,
+    COUNT(b.booking_id) AS so_lan_dat_phong,
+    SUM((b.check_out - b.check_in) * r.price_per_day) AS doanh_thu
+FROM bookings b
+JOIN rooms r ON r.room_id = b.room_id
+GROUP BY r.room_type, r.price_per_day;
 
+
+-- những khách đặt phòng >=2 lần
+SELECT
+    g.guest_id,
+    g.guest_name,
+    COUNT(b.booking_id) AS so_lan_dat_phong
+FROM bookings b
+JOIN guests g ON g.guest_id = b.guest_id
+GROUP BY g.guest_id, g.guest_name
+HAVING COUNT(b.booking_id) >= 2;
+
+-- loại phòng có số lượt đặt phòng nhiều nhất
+SELECT
+    r.room_type,
+    COUNT(b.booking_id) AS so_luot_dat
+FROM bookings b
+JOIN rooms r ON r.room_id = b.room_id
+GROUP BY r.room_type
+ORDER BY so_luot_dat DESC
+LIMIT 1;
 
